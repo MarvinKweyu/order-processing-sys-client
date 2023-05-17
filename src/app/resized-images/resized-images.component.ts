@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ResizedImagesComponent implements OnInit {
   resizedImages: [] = [];
+  imageUrl = environment.imageUrl;
 
   constructor(private http: HttpClient) {}
 
