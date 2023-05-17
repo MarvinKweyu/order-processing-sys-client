@@ -10,6 +10,7 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 })
 export class UploadFormComponent implements OnInit {
   imageForm: any;
+  headers: Object = { Authorization: 'Bearer ' + environment.publicTokenHome };
 
   constructor(
     private httpClient: HttpClient,

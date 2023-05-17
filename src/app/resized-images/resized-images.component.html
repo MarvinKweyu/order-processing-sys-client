@@ -1,4 +1,12 @@
-<div class="flex justify-center">
-  No images yet. Head over to the <a routerLink="/upload" class="mx-2"> upload page</a> to
-  get started.
+<p>
+  Back to <a routerLink="/upload" class="mx-2"> upload page</a> to get started.
+</p>
+
+<div class="flex justify-center" *ngIf="resizedImages.length == 0">
+  No images yet. Head over to the
+  <a routerLink="/upload" class="mx-2"> upload page</a> to get started.
+</div>
+
+<div *ngIf="resizedImages.length > 0" class="flex">
+  there are {{ resizedImages.length }} images
 </div>
