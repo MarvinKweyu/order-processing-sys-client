@@ -21,7 +21,9 @@
           imageUrl +
           imageObject['attributes']['image']['data'][0]['attributes']['url']
         "
-        alt="Image 1"
+        [alt]="
+          imageObject['attributes']['image']['data'][0]['attributes']['name']
+        "
         width="300"
         height="300"
         class="w-full h-auto"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-form',
@@ -14,7 +15,8 @@ export class UploadFormComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +75,7 @@ export class UploadFormComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           console.log(response)
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.log(error, 'error. Unable to upload image');
