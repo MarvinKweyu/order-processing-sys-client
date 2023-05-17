@@ -10,14 +10,11 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 })
 export class UploadFormComponent implements OnInit {
   imageForm: any;
-  uploadUrl = 'http://localhost:1337/api/upload';
-  imageresizeUrl = 'http://localhost:1337/api/image-folders';
-  imageId: number = 20;
 
   constructor(
     private httpClient: HttpClient,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.imageForm = this.formBuilder.group({
@@ -56,7 +53,7 @@ export class UploadFormComponent implements OnInit {
   }
 
   resizeImage(): void {
-    const headers = { Authorization: 'Bearer ' + environment.publicToken };
+    const headers = { Authorization: 'Bearer ' + environment.publicTokenHome };
     let formData = new FormData();
     formData.append(
       'data',
@@ -68,74 +65,18 @@ export class UploadFormComponent implements OnInit {
       })
     );
     formData.append('files.image', this.imageForm.get('image').value);
+    this.imageForm.reset();
 
     this.httpClient
-      .post(this.imageresizeUrl, formData, { headers })
-      // .pipe(mergeMap((response: Object) => {
-      //   const imageId = response[0].id;
-      // }))
+      .post(environment.baseurl + '/image-folders', formData, { headers })
       .subscribe({
         next: (response: any) => {
-          // this.imageForm.patchValue({
-          //   image: response[0].id
-          // })
           console.log(response)
-          // this.imageId = response[0].id;
-          // this.createContent();
         },
         error: (error) => {
           console.log(error, 'error. Unable to upload image');
           return;
         },
       });
-  }
-
-  uploadImage() {
-    const headers = { Authorization: 'Bearer ' + environment.publicToken };
-    let formData = new FormData();
-    formData.append('files', this.imageForm.get('image').value);
-
-    this.httpClient
-      .post(this.uploadUrl, formData, { headers })
-      // .pipe(mergeMap((response: Object) => {
-      //   const imageId = response[0].id;
-      // }))
-      .subscribe({
-        next: (response: any) => {
-          // this.imageForm.patchValue({
-          //   image: response[0].id
-          // })
-          console.log(response[0].id, 'upload image response');
-          this.imageId = response[0].id;
-          this.createContent();
-        },
-        error: (error) => {
-          console.log(error, 'error. UNable to upload image');
-          return;
-        },
-      });
-  }
-
-  createContent(): void {
-    let formDetails = this.imageForm.value;
-
-    const headers = { Authorization: 'Bearer ' + environment.bearerToken };
-
-    formDetails.image = this.imageId;
-    this.imageForm.reset();
-
-    const data = {
-      data: formDetails,
-    };
-
-    this.httpClient.post(this.imageresizeUrl, data, { headers }).subscribe({
-      next: (response) => {
-        console.log(response, 'create content response');
-      },
-      error: (error) => {
-        console.log(error, 'error. UNable to create content type');
-        return;
-      },
-    });
   }
 }
