@@ -8,11 +8,15 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ResizedImagesComponent } from './resized-images/resized-images.component';
+import { UploadFormComponent } from './upload-form/upload-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResizedImagesComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
