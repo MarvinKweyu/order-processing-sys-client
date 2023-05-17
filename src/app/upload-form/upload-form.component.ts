@@ -10,7 +10,7 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 })
 export class UploadFormComponent implements OnInit {
   imageForm: any;
-  uploadUrl = 'http://localhost:1337/upload';
+  uploadUrl = 'http://localhost:1337/api/upload';
   imageresizeUrl = 'http://localhost:1337/api/image-folders';
   imageId: number = 20;
 
@@ -56,12 +56,21 @@ export class UploadFormComponent implements OnInit {
   }
 
   resizeImage(): void {
-    const headers = { Authorization: 'Bearer ' + environment.bearerToken };
+    const headers = { Authorization: 'Bearer ' + environment.publicToken };
     let formData = new FormData();
-    formData.append('files', this.imageForm.get('image').value);
+    formData.append(
+      'data',
+      JSON.stringify({
+        name: this.imageForm.get('name').value,
+        email: this.imageForm.get('email').value,
+        width: this.imageForm.get('width').value,
+        height: this.imageForm.get('height').value,
+      })
+    );
+    formData.append('files.image', this.imageForm.get('image').value);
 
     this.httpClient
-      .post(this.uploadUrl, formData, { headers })
+      .post(this.imageresizeUrl, formData, { headers })
       // .pipe(mergeMap((response: Object) => {
       //   const imageId = response[0].id;
       // }))
@@ -70,8 +79,9 @@ export class UploadFormComponent implements OnInit {
           // this.imageForm.patchValue({
           //   image: response[0].id
           // })
-          this.imageId = response[0].id;
-          this.createContent();
+          console.log(response)
+          // this.imageId = response[0].id;
+          // this.createContent();
         },
         error: (error) => {
           console.log(error, 'error. Unable to upload image');
@@ -81,7 +91,7 @@ export class UploadFormComponent implements OnInit {
   }
 
   uploadImage() {
-    const headers = { Authorization: 'Bearer ' + environment.bearerToken };
+    const headers = { Authorization: 'Bearer ' + environment.publicToken };
     let formData = new FormData();
     formData.append('files', this.imageForm.get('image').value);
 

@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   baseurl: 'http://localhost:1337/api',
-  bearerToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg0MjYyNTY5LCJleHAiOjE2ODY4NTQ1Njl9.OFcyTj3fnaaC9hVq5Gf56NxAN7lBY1oKd26n91gc4Js'
-  // bearerToken: 'f0969a792d954978e0d0da72681343b9eff6ec5c9416fa0f416bf60de763997d963b87582282c927a3e421c004bf17dd4882b394650fa248203a5c5ec589bc05705f03d7be49ef39d6b144936dac74ff94f8f2c4ff2fd34652f8f0aa42367f5d847778c1674046c80f22b7cfaf01ce2345142b698ce44cf91a74dc06a20016c8'
-};
+  bearerToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg0MzE3ODk3LCJleHAiOjE2ODY5MDk4OTd9.78rVC03FFeTk4us5BPyO9o4_izU2nPqpcPtkE2r7fmk',
+  publicToken: 'a95d2005958ebf43dd55d59e5f8c9fc80e448c837fceab104ae7ab981ac43799641d458371058f3da280bd86389048ae64faf191bc6bcb2e689d94f170299c94085c6725136d263f05c6288fc4449788aa85d03d47820ffd9cb59380ad4bc9b7f13107cc0d2a8b6d331a8a0468be32f4e06535d21fef0f9c9910fdd089ae6e0a'
+  };
 
 /*
  * For easier debugging in development mode, you can import the following file
