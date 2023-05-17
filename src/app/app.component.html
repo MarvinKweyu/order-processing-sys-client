@@ -116,6 +116,10 @@
           >
             <div *ngIf="imageForm.controls.width.errors.required">
               Width is required
+              {{ imageForm.controls.height.errors | json }}
+            </div>
+            <div *ngIf="imageForm.controls.width.errors.pattern">
+              Please use a number
             </div>
           </div>
         </div>
@@ -144,6 +148,9 @@
           >
             <div *ngIf="imageForm.controls.height.errors.required">
               Height is required
+            </div>
+            <div *ngIf="imageForm.controls.height.errors.pattern">
+              Please use a number
             </div>
           </div>
         </div>

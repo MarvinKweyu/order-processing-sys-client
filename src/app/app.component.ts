@@ -19,15 +19,15 @@ export class AppComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.imageForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       image: ['', Validators.required],
-      width: ['', [Validators.required]],
-      height: ['', [Validators.required]],
+      width: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      height: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
 
