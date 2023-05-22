@@ -24,7 +24,6 @@ export class ResizedImagesComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.resizedImages = response.data;
-          console.log(response.data);
         },
         error: (error) => {},
         complete: () => {},
